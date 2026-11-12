@@ -1,3 +1,4 @@
+
 name: SGTTM Keep Alive
 
 on:
@@ -16,4 +17,4 @@ jobs:
         run: |
           curl --fail --silent --show-error \
             --max-time 120 \
-            "$API_URL"
+            "${API_URL%/}/health"
