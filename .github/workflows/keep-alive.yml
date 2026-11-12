@@ -11,7 +11,14 @@ jobs:
 
     steps:
       - name: Ping na API
+        env:
+          API_URL: ${{ secrets.RENDER_API_URL }}
         run: |
+          if [ -z "$API_URL" ]; then
+            echo "ERRO: RENDER_API_URL não foi configurado."
+            exit 1
+          fi
+      
           curl --fail --silent --show-error \
             --max-time 120 \
-            "${{ secrets.RENDER_API_URL }}"
+            "$API_URL"
